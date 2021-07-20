@@ -44,7 +44,6 @@
         <a href="" class="sign-up-link">SIGN UP</a>
       </div>
     </div>
-    <!--    <b-btn to="/register">register</b-btn>-->
   </div>
 </template>
 <script>
