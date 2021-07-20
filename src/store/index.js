@@ -11,7 +11,9 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    loginUser() {}
+    loginUser() {},
+    signUp() {},
+    checkVerificationCode() {}
   },
   modules: {
     a: Auth

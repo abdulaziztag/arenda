@@ -22,11 +22,11 @@
         </div>
         <button
             class="login-button verify-button"
-            @click="verify"
+            @click="checkVerificationCode"
         >Verify</button>
       </div>
       <div class="login-bottom-section ">
-        <a href="" class="sign-up-link verify-link">Did not reseive a message?</a>
+        <a href="" class="sign-up-link verify-link">Did not receive a message?</a>
       </div>
     </div>
   </div>
@@ -34,7 +34,16 @@
 </template>
 <script>
 export default {
-
+  data() {
+    return {
+      verificationCode: ''
+    }
+  },
+  methods: {
+    checkVerificationCode() {
+      this.$emit('checkVerificationCode', this.verificationCode)
+    }
+  }
 }
 </script>
 <style lang="less">

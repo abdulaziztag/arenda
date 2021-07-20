@@ -1,6 +1,6 @@
 <template>
   <div class="signup-main">
-    <div class="login-card sing-up-card">
+    <div class="login-card sing-up-card" v-if="!getVerificationCode">
       <div class="login-top-section">
         <h1 class="login-header">Sign Up</h1>
         <div class="input-block">
@@ -60,18 +60,52 @@
         </div>
         <button
             class="login-button sign-up-margin-button"
-            @click="login"
-        >LOGIN</button>
+            @click="signUp"
+        >SIGN UP</button>
       </div>
       <div class="login-bottom-section">
-        <a href="" class="sign-up-link">SIGN UP</a>
+        <a href="" @click="$router.push('/login')" class="sign-up-link">LOGIN</a>
       </div>
     </div>
+    <Verify
+        v-else
+        @checkVerificationCode="checkVerificationCode"
+    />
   </div>
 </template>
 <script>
-export default {
+import Verify from '@/components/Verify.vue'
 
+export default {
+  components: {
+    Verify
+  },
+  data () {
+    return {
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      password: '',
+      getVerificationCode: false
+    }
+  },
+  methods: {
+    async signUp () {
+      await this.$store.dispatch('signUp', {
+        first_name: this.firstName,
+        last_name: this.lastName,
+        phone_number: this.phoneNumber,
+        password: this.password
+      })
+      this.getVerificationCode = !this.getVerificationCode
+    },
+    async checkVerificationCode(code) {
+      await this.$store.dispatch('checkVerificationCode', {
+        phone_number: this.phoneNumber,
+        code
+      })
+    }
+  }
 }
 </script>
 <style lang="less">

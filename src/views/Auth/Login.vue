@@ -41,13 +41,15 @@
         >LOGIN</button>
       </div>
       <div class="login-bottom-section">
-        <a href="" class="sign-up-link">SIGN UP</a>
+        <a href="" @click="$router.push('/register')" class="sign-up-link">SIGN UP</a>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  components: {
+  },
   data () {
     return {
       password: '',
