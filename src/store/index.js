@@ -13,7 +13,8 @@ export default new Vuex.Store({
   actions: {
     loginUser() {},
     signUp() {},
-    checkVerificationCode() {}
+    checkVerificationCode() {},
+    checkPhoneNumberForResetPassword () {}
   },
   modules: {
     a: Auth

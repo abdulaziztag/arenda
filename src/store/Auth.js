@@ -48,6 +48,36 @@ export default {
       } catch (e) {
         throw new Error(e)
       }
+    },
+    async checkPhoneNumberForResetPassword(_, payload) {
+      try {
+        console.log(payload)
+        let data = await fetch('http://{address}/accounts/recover/', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        console.log(data)
+      } catch (e) {
+        throw new Error(e)
+      }
+    },
+    async codeForPassword(_, payload) {
+      try {
+        console.log(payload)
+        let data = await fetch('http://{address}/accounts/verify-code-password/', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        console.log(data)
+      } catch (e) {
+        throw new Error(e)
+      }
     }
   },
   modules: {

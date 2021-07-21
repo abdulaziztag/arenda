@@ -64,12 +64,13 @@
         >SIGN UP</button>
       </div>
       <div class="login-bottom-section">
-        <a href="" @click="$router.push('/login')" class="sign-up-link">LOGIN</a>
+        <a @click="$router.push('/login')" class="sign-up-link">LOGIN</a>
       </div>
     </div>
     <Verify
         v-else
         @checkVerificationCode="checkVerificationCode"
+        componentFor="reg"
     />
   </div>
 </template>

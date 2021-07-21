@@ -2,16 +2,16 @@
   <div class="verify-main">
     <div class="login-card verify-card">
       <div class="login-top-section">
-        <h1 class="login-header">Verification</h1>
+        <h1 class="login-header">Change the password</h1>
         <div class="input-block">
           <div class="input-name">
-            Verification Code
+            Phone number
           </div>
           <div class="input-icon-group verify-margin">
             <input
                 type="text"
-                placeholder="Type your verification code"
-                v-model="verificationCode"
+                placeholder="Type your phone number"
+                v-model="phoneNumber"
             >
             <div class="input-icon">
               <b-icon icon="type"></b-icon>
@@ -22,11 +22,11 @@
         </div>
         <button
             class="login-button verify-button"
-            @click="checkVerificationCode"
-        >Verify</button>
+            @click="checkPhoneNumber"
+        >Get code</button>
       </div>
-      <div class="login-bottom-section ">
-        <a href="" class="sign-up-link verify-link">Did not receive a message?</a>
+      <div class="login-bottom-section">
+        <a @click="$emit('goBack')" class="sign-up-link">Go back</a>
       </div>
     </div>
   </div>
@@ -34,16 +34,14 @@
 </template>
 <script>
 export default {
-  props: ['componentFor'],
   data() {
     return {
-      verificationCode: ''
+      phoneNumber: ''
     }
   },
   methods: {
-    checkVerificationCode() {
-      this.componentFor === 'reg' && this.$emit('checkVerificationCode', this.verificationCode)
-      this.componentFor === 'changePassword' && this.$emit('resetPassword', this.verificationCode)
+    checkPhoneNumber() {
+      this.$emit('checkPhoneNumber', this.phoneNumber)
     }
   }
 }

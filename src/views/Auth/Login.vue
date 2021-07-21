@@ -1,5 +1,5 @@
 <template>
-  <div class="login-main">
+  <div class="login-main" v-if="flag === 0">
     <div class="login-card">
       <div class="login-top-section">
         <h1 class="login-header">LogIn</h1>
@@ -31,8 +31,8 @@
               <b-icon icon="lock"></b-icon>
             </div>
           </div>
-          <div class="input-name-right">
-            <a href="">Forgot password?</a>
+          <div class="input-name-right" @click="flag++">
+            <a>Forgot password?</a>
           </div>
         </div>
         <button
@@ -41,19 +41,35 @@
         >LOGIN</button>
       </div>
       <div class="login-bottom-section">
-        <a href="" @click="$router.push('/register')" class="sign-up-link">SIGN UP</a>
+        <a @click="$router.push('/register')" class="sign-up-link">SIGN UP</a>
       </div>
     </div>
   </div>
+  <ForgotPassword
+      v-else-if="flag === 1"
+      @goBack="flag--"
+      @checkPhoneNumber="checkPhoneNumber"
+  />
+  <Verify
+    v-else
+    component-for="changePassword"
+    @resetPassword="resetPassword"
+  />
 </template>
 <script>
+import Verify from '../../components/Verify';
+import ForgotPassword from '../../components/ForgotPassword';
+
 export default {
   components: {
+    Verify,
+    ForgotPassword
   },
   data () {
     return {
       password: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      flag: 0
     }
   },
   methods: {
@@ -62,6 +78,19 @@ export default {
         phone_number: this.phoneNumber,
         password: this.password
       })
+    },
+    async checkPhoneNumber (phoneNumber) {
+      await this.$store.dispatch('checkPhoneNumberForResetPassword', {
+        phone_number: phoneNumber,
+      })
+      this.flag++
+    },
+    async resetPassword (code) {
+      await this.$store.dispatch('codeForPassword', {
+        phone_number: this.phoneNumber,
+        code
+      })
+      this.flag = 0
     }
   }
 }
