@@ -4,26 +4,21 @@
       <div class="login-top-section">
         <h1 class="login-header">Verification</h1>
         <div class="input-block">
-          <div class="input-name">
-            Verification Code
-          </div>
-          <div class="input-icon-group verify-margin">
-            <input
-                type="text"
-                placeholder="Type your verification code"
-                v-model="verificationCode"
-            >
-            <div class="input-icon">
-              <b-icon icon="type"></b-icon>
-            </div>
-          </div>
-
-
+          <v-text-field
+              filled
+              clearable
+              prepend-inner-icon="mdi-message-text"
+              type="text"
+              label="Type your verification code"
+              v-model="verificationCode"
+          />
         </div>
         <button
             class="login-button verify-button"
             @click="checkVerificationCode"
-        >Verify</button>
+        >
+          Verify
+        </button>
       </div>
       <div class="login-bottom-section ">
         <a href="" class="sign-up-link verify-link">Did not receive a message?</a>

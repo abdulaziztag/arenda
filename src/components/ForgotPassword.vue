@@ -4,26 +4,20 @@
       <div class="login-top-section">
         <h1 class="login-header">Change the password</h1>
         <div class="input-block">
-          <div class="input-name">
-            Phone number
-          </div>
-          <div class="input-icon-group verify-margin">
-            <input
-                type="text"
-                placeholder="Type your phone number"
-                v-model="phoneNumber"
-            >
-            <div class="input-icon">
-              <b-icon icon="type"></b-icon>
-            </div>
-          </div>
-
-
+          <v-text-field
+              filled
+              clearable
+              prepend-inner-icon="mdi-phone"
+              type="text"
+              label="Type your phone number"
+              v-model="phoneNumber"
+          />
         </div>
         <button
             class="login-button verify-button"
             @click="checkPhoneNumber"
-        >Get code</button>
+        >Get code
+        </button>
       </div>
       <div class="login-bottom-section">
         <a @click="$emit('goBack')" class="sign-up-link">Go back</a>

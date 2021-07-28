@@ -4,64 +4,44 @@
       <div class="login-top-section">
         <h1 class="login-header">Sign Up</h1>
         <div class="input-block">
-          <div class="input-name sign-up-name">
-            First Name
-          </div>
-          <div class="input-icon-group sign-up-margin">
-            <input
+            <v-text-field
+                filled
+                clearable
+                prepend-inner-icon="mdi-account"
                 type="text"
-                placeholder="Type your first name"
+                label="Type your first name"
                 v-model="firstName"
-            >
-            <div class="input-icon">
-              <b-icon icon="person"></b-icon>
-            </div>
-          </div>
-          <div class="input-name sign-up-name">
-            Last Name
-          </div>
-          <div class="input-icon-group sign-up-margin">
-            <input
-                type="text"
-                placeholder="Type your last name"
-                v-model="lastName"
-            >
-            <div class="input-icon">
-              <b-icon icon="person-fill"></b-icon>
-            </div>
-          </div>
-          <div class="input-name sign-up-name">
-            Phone Number
-          </div>
-          <div class="input-icon-group sign-up-margin">
-            <input
-                type="text"
-                placeholder="Type your phone number"
-                v-model="phoneNumber"
-            >
-            <div class="input-icon">
-              <b-icon icon="phone"></b-icon>
-            </div>
-          </div>
-          <div class="input-name sign-up-name">
-            Password
-          </div>
-          <div class="input-icon-group last">
-            <input
-                type="password"
-                placeholder="Type your password"
-                v-model="password"
-            >
-            <div class="input-icon">
-              <b-icon icon="lock"></b-icon>
-            </div>
-          </div>
-
+            />
+          <v-text-field
+              filled
+              clearable
+              prepend-inner-icon="mdi-account"
+              type="text"
+              label="Type your last name"
+              v-model="lastName"
+          />
+          <v-text-field
+              filled
+              clearable
+              prepend-inner-icon="mdi-phone"
+              type="text"
+              label="Type your phone number"
+              v-model="phoneNumber"
+          />
+          <v-text-field
+              filled
+              clearable
+              prepend-inner-icon="mdi-lock"
+              type="password"
+              label="Type your password"
+              v-model="password"
+          />
         </div>
         <button
             class="login-button sign-up-margin-button"
             @click="signUp"
-        >SIGN UP</button>
+        >SIGN UP
+        </button>
       </div>
       <div class="login-bottom-section">
         <a @click="$router.push('/login')" class="sign-up-link">LOGIN</a>
@@ -81,7 +61,7 @@ export default {
   components: {
     Verify
   },
-  data () {
+  data() {
     return {
       firstName: '',
       lastName: '',
@@ -91,7 +71,7 @@ export default {
     }
   },
   methods: {
-    async signUp () {
+    async signUp() {
       await this.$store.dispatch('signUp', {
         first_name: this.firstName,
         last_name: this.lastName,

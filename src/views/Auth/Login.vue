@@ -4,33 +4,22 @@
       <div class="login-top-section">
         <h1 class="login-header">LogIn</h1>
         <div class="input-block">
-          <div class="input-name">
-            Phone Number
-          </div>
-          <div class="input-icon-group">
-            <input
+            <v-text-field
+                filled
+                clearable
+                prepend-inner-icon="mdi-phone"
                 type="text"
-                placeholder="Type your phone number"
+                label="Type your phone number"
                 v-model="phoneNumber"
-            >
-            <div class="input-icon">
-              <b-icon icon="phone"></b-icon>
-            </div>
-          </div>
-
-          <div class="input-name">
-            Password
-          </div>
-          <div class="input-icon-group last">
-            <input
+            />
+          <v-text-field
+                filled
+                clearable
+                prepend-inner-icon="mdi-lock"
                 type="password"
-                placeholder="Type your password"
+                label="Type your password"
                 v-model="password"
-            >
-            <div class="input-icon">
-              <b-icon icon="lock"></b-icon>
-            </div>
-          </div>
+            />
           <div class="input-name-right" @click="flag++">
             <a>Forgot password?</a>
           </div>

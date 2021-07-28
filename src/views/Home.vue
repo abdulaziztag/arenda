@@ -1,6 +1,5 @@
 <template>
   <div class="home">
- Abdulaziz!!! Ishladiiiii
   </div>
 </template>
 
@@ -8,5 +7,13 @@
 
 export default {
   name: 'Home',
+  created() {
+    this.$router.push('/categories')
+  }
 }
 </script>
+
+<style scoped>
+.home {
+}
+</style>
