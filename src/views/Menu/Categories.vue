@@ -1,14 +1,17 @@
 <template>
   <v-card
-      class="mx-auto"
-      max-width="700"
+      class="mx-auto transparent elevation-0"
+      max-width="800"
   >
+    <v-card-title class="display-1 white--text">
+      Categories
+    </v-card-title>
     <v-container fluid>
       <v-row dense>
         <v-col
-            v-for="card in cards"
-            :key="card.title"
-            :cols="card.flex"
+            v-for="category in categories"
+            :key="category.name"
+            :cols="category.flex"
         >
           <v-hover v-slot="{ hover }">
           <v-card
@@ -18,13 +21,14 @@
               :elevation="hover ? 12 : 2"
           >
             <v-img
-                :src="card.src"
-                @click="clicked"
+                :src="!!category.src ? category.src : 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'"
+                lazy-src="https://picsum.photos/id/11/100/60"
+                @click="clicked(category)"
+                gradient="to top, rgba(0, 0, 0, 0.8) 0%, transparent 100px"
                 class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="200px"
             >
-              <v-card-title v-text="card.title"></v-card-title>
+              <v-card-title v-text="category.name"></v-card-title>
             </v-img>
           </v-card>
           </v-hover>
@@ -39,34 +43,38 @@ export default {
   name: "Categories",
   data() {
     return {
-      cards: [
-        { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 12 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-        { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 }
-      ]
+      cols: 12
     }
   },
   methods: {
-    clicked () {
-      console.log('ds')
+    async clicked (category) {
+      await this.$store.dispatch('getSubCategory', category.slug)
+      this.$store.commit('setSubCategoryHeader', {
+        name: category.name,
+        src: category.src
+      })
+      this.$router.push(`/category/${category.slug}`)
     }
   },
   computed: {
+    categories() {
+      let filteredCategories = this.$store.getters.getCategories
+      filteredCategories = filteredCategories.map(e => {
+        return {...e, flex: 6}
+      })
+      if (filteredCategories.length % 2 !== 0) {
+        filteredCategories[0].flex = 12
+      }
+      return filteredCategories
+    }
   },
   async created() {
-    await this.$store.dispatch('getCategories')
-    this.categories = this.$store.getters.getCategories
+    if (this.$store.getters.getCategories.length === 0) {
+      await this.$store.dispatch('getCategories')
+    }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

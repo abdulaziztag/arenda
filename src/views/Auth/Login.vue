@@ -67,6 +67,7 @@ export default {
         phone_number: this.phoneNumber,
         password: this.password
       })
+      this.$router.push('/my-posts')
     },
     async checkPhoneNumber (phoneNumber) {
       await this.$store.dispatch('checkPhoneNumberForResetPassword', {

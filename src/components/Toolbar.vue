@@ -6,23 +6,11 @@
         height="60px"
         :color="this.color"
     >
-
-      <v-toolbar-title>Arenduy</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-items style="width: 200px">
-        <v-text-field
-            label="Search"
-            solo
-            :color="this.color"
-            clearable
-            light
-            append-icon="mdi-magnify"
-            class="pt-1"
-        >
-        </v-text-field>
-      </v-toolbar-items>
+      <v-row>
+        <v-col class="text-h4 text-center font-weight-light">
+          Arenduy
+        </v-col>
+      </v-row>
     </v-toolbar>
   </div>
 </template>
@@ -31,9 +19,6 @@
 export default {
   name: "Toolbar",
   props: ['color'],
-  created() {
-    console.log(this.color)
-  }
 }
 </script>
 

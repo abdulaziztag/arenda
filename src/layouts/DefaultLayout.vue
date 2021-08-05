@@ -5,13 +5,13 @@
   >
     <Toolbar :color="color" />
     <div
-        style="background-image: url('https://pcvector.net/uploads/posts/2020-05/1589649485_triangle-min.jpg');
+        style="background-image: url('https://cdn.vuetifyjs.com/images/parallax/material2.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
       "
     >
-      <router-view class="mt-5" style="margin-bottom: 100px;"/>
+      <router-view class="mt-5" style="margin-bottom: 100px"/>
     </div>
     <BottomNav @getColor="setColor" />
   </v-app>

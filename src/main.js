@@ -26,11 +26,13 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$hostName = 'https://arendauy1.herokuapp.com'
+
+store.commit('setHostName')
+
 new Vue({
   router,
   store,
   vuetify,
-
-  //vuetify,
   render: h => h(App)
 }).$mount('#app')

@@ -10,7 +10,6 @@
         v-for="item in items"
         :key="item.name"
         :to="item.to"
-        @click="setColor"
     >
       <span>{{ item.name }}</span>
 
@@ -31,14 +30,14 @@ export default {
           to: '/categories',
         },
         {
-          name: 'Newest',
-          icon: 'mdi-newspaper-variant-outline',
-          to: '/newPosts',
+          name: 'Search',
+          icon: 'mdi-magnify',
+          to: '/search',
         },
         {
-          name: 'Top',
+          name: 'My posts',
           icon: 'mdi-arrow-up-bold-box-outline',
-          to: '/top',
+          to: '/my-posts',
         },
         {
           name: 'Profile',
@@ -52,23 +51,25 @@ export default {
     color() {
       let path = this.$route.path
       if (path === '/categories') {
-        return 'blue-grey'
-      } else if (path === '/newPosts') {
-        return 'brown'
-      } else if (path === '/top') {
+        return 'red lighten-1'
+      } else if (path === '/search') {
+        return 'amber darken-1'
+      } else if (path === '/my-posts') {
         return 'indigo'
       } else {
-        return 'teal'
+        return 'purple darken-2'
       }
     }
   },
   methods: {
-    setColor() {
-      this.$emit('getColor', this.color)
-    }
   },
   created() {
     this.$emit('getColor', this.color)
+  },
+  watch: {
+    color() {
+      this.$emit('getColor', this.color)
+    }
   }
 }
 </script>

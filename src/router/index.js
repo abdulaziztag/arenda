@@ -3,7 +3,11 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Auth/Login.vue'
 import Register from '../views/Auth/Register.vue'
-import Categories from '../views/Menu/Categories';
+import Categories from '../views/Menu/Categories'
+import MyPosts from '../views/Menu/MyPosts'
+import ProductMain from '../views/Product/ProductMain';
+import Search from '../views/Menu/Search';
+import SubCategories from '../views/Menu/SubCategories';
 
 Vue.use(VueRouter)
 
@@ -12,6 +16,31 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: Categories
+  },
+  {
+    path: '/category/:categorySlug/',
+    name: 'SubCategories',
+    component: SubCategories
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  },
+  {
+    path: '/my-posts',
+    name: 'ListOfProducts',
+    component: MyPosts
+  },
+  {
+    path: '/product/:product',
+    name: 'ProductMain',
+    component: ProductMain
   },
   {
     path: '/login',
@@ -29,11 +58,6 @@ const routes = [
       layout: 'auth-layout'
     }
   },
-  {
-    path: '/categories',
-    name: 'Categories',
-    component: Categories
-  }
 ]
 
 const router = new VueRouter({

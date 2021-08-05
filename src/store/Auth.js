@@ -5,9 +5,10 @@ export default {
   },
   actions: {
     async loginUser({ commit }, payload) {
+      console.log(this.getters.getHostName)
       console.log(payload)
       try {
-        let data = await fetch('http://{address}/accounts/login/', {
+        let data = await fetch(`${this.getters.getHostName}/accounts/login/`, {
           method: 'POST',
           body: JSON.stringify(payload),
           headers: {
