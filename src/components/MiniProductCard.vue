@@ -1,11 +1,12 @@
 <template>
   <v-card
       class="pa-1 d-flex flex-row flex-wrap ma-2"
+      @click="getProduct"
   >
     <v-row class="align-center">
       <v-col xs="12" sm="3" cols="12" lg="3" xl="3">
         <v-img
-            :src="`https://picsum.photos/500/500?image=${2 * 5 + 10}`"
+            :src="!!product.image ? product.image : `https://picsum.photos/500/500?image=${2 * 5 + 10}`"
             lazy-src="https://picsum.photos/id/11/100/60"
             class="ma-1"
             :aspect-ratio="4/4"
@@ -24,20 +25,17 @@
             class="flex-wrap flex-column pa-3"
         >
           <v-col cols="12" class="text-h5">
-            Cobalt 3chi position
+            {{ product.title }}
           </v-col>
-          <v-col cols="12"><p>Toshkent • 40mln •</p></v-col>
-
           <v-col cols="12">
-            <v-spacer></v-spacer>
-            <v-btn
-                plain
-                color="success"
-                outlined
-                @click="getProduct"
-            >
-              More
-            </v-btn>
+            <v-icon>mdi-wifi-check</v-icon>
+          </v-col>
+          <v-col cols="12">
+            <p>
+              {{ product.city[0].toUpperCase() }}{{ product.city.slice(1) }}
+              •
+              {{ product.price }}
+            </p>
           </v-col>
         </v-row>
       </v-col>
@@ -48,27 +46,21 @@
 <script>
 export default {
   name: "MiniProductCard",
+  props: ['product'],
   data() {
     return {
-    }
-  },
-  computed: {
-    product() {
-      return this.$store.getters.getProduct
     }
   },
   methods: {
     async getProduct() {
       await this.$store.dispatch('getProduct',
           {
-            category: this.product.product.category,
-            sub: this.product.product.subCategory,
-            productSlug: this.product.product.slug
+            category: this.product.category,
+            sub: this.product.subcategory,
+            productSlug: this.product.slug
           })
-      await this.$router.push(`/product/${this.product.product.slug}`)
+      await this.$router.push(`/product/${this.product.category}/${this.product.subcategory}/${this.product.slug}`)
     }
-  },
-  created() {
   }
 }
 </script>

@@ -53,7 +53,7 @@ export default {
         name: category.name,
         src: category.src
       })
-      this.$router.push(`/category/${category.slug}`)
+      await this.$router.push(`/category/${category.slug}`)
     }
   },
   computed: {

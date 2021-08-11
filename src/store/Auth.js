@@ -21,19 +21,19 @@ export default {
       }
     },
     async signUp ({ commit }, payload) {
-      console.log(payload)
-      try {
-        let data = await fetch('{{address}}/accounts/signup/', {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        console.log(data)
-      } catch (e) {
-        throw new Error(e)
-      }
+        console.log(payload)
+        try {
+          let data = await fetch('{{address}}/accounts/signup/', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          console.log(data)
+        } catch (e) {
+          throw new Error(e)
+        }
     },
     async checkVerificationCode (_, payload) {
       try {

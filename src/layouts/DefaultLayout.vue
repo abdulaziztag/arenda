@@ -2,13 +2,14 @@
   <v-app
       dark
       class="back"
+      style="height: auto"
   >
     <Toolbar :color="color" />
     <div
-        style="background-image: url('https://cdn.vuetifyjs.com/images/parallax/material2.jpg');
+        style="
+        background: url('https://arendauy1.herokuapp.com/media/backgroundimage.png') fixed;
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+        height: 100%;
       "
     >
       <router-view class="mt-5" style="margin-bottom: 100px"/>

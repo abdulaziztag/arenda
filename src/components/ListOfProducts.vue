@@ -1,9 +1,10 @@
 <template>
   <div>
-    <MiniProductCard/>
-    <MiniProductCard/>
-    <MiniProductCard/>
-    <MiniProductCard/>
+    <MiniProductCard
+      v-for="product in list"
+      :product="product"
+      :key="product.slug"
+    />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import MiniProductCard from './MiniProductCard';
 
 export default {
   name: "ListOfProducts",
+  props: ['list'],
   components: {
     MiniProductCard
   }

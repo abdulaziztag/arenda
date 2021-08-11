@@ -1,41 +1,46 @@
 export default {
   state: {
-    productInfo: {
-      product: {
-        slug: "2_xonali",
-        author: "Akbarbek Umurzakov",
-        phone_number: "+998991231212",
-        image: "/media/Screenshot_from_2021-07-11_21-34-38_JN99D9o.png",
-        title: "2 xonali",
-        description: "zor uy",
-        price: 143,
-        views: 0,
-        address: "Sergeli",
-        publish: "2021-07-25",
-        created: "2021-07-25",
-        updated: "2021-07-25",
-        city: "toshkent",
-        category: 'uylar',
-        subCategory: 'dacha'
-      },
-      total_area: 45,
-      rooms: 2
-    }
+    productInfo: {},
+    productList: [],
+    searchList: []
   },
   mutations: {
     setProduct(state, payload) {
-      state.product = payload
+      state.productInfo = payload
+    },
+    setProductList(state, payload) {
+      state.productList = payload
+    },
+    setSearchList(state, payload) {
+      state.searchList = payload
     }
   },
   actions: {
     async getProduct({ commit }, { category, sub, productSlug }) {
-      console.log('sd')
-      console.log(category, sub, productSlug)
       try {
-        let data = await fetch(`/v1/product/detail/${category}/${sub}/${productSlug}/`, {
+        let data = await fetch(`${this.getters.getHostName}/v1/product/detail/${category}/${sub}/${productSlug}/`, {
           method: 'GET',
         })
-        console.log(data)
+        let productDetail = await data.json()
+        commit('setProduct', productDetail)
+      } catch (e) {
+        throw new Error(e)
+      }
+    },
+    async getProductListInCategories({ commit }, { categorySlug, subSlug, page }) {
+      try {
+        let data = await fetch(`${this.state.hostName}/v1/product/list/${categorySlug}/${subSlug}/?page=${!!page ? page : 1}`)
+        let listOfProducts = await data.json()
+        commit('setProductList', listOfProducts)
+      } catch (e) {
+        throw new Error(e)
+      }
+    },
+    async productSearch({ commit }, payload) {
+      try {
+        let data = await fetch(`${this.getters.getHostName}/v1/product/search/?search=${payload}`)
+        let list = await data.json()
+        commit('setSearchList', list)
       } catch (e) {
         throw new Error(e)
       }
@@ -44,6 +49,12 @@ export default {
   getters: {
     getProduct(state) {
       return state.productInfo
+    },
+    getProductListInCategories(state) {
+      return state.productList
+    },
+    getSearchList(state) {
+      return state.searchList
     }
   }
 }

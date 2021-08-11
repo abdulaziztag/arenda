@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import Auth from './Auth';
 import Product from './Product';
+import AddByCategory from './AddByCategory';
 
 Vue.use(Vuex)
 
@@ -50,7 +51,6 @@ export default new Vuex.Store({
           method: "GET"
         })
         let subCategories = await data.json()
-        console.log(subCategories)
         commit('setSubCategories', subCategories)
       } catch (e) {
         throw new Error(e)
@@ -59,13 +59,6 @@ export default new Vuex.Store({
   },
   getters: {
     getCategories(state) {
-      /*let categories = state.categories
-      let smth = categories.map(e => {
-        return {...e, flex: '6'}
-      })
-      if (categories.length % 2 !== 0) {
-        categories[0].flex = '12'
-      }*/
       return state.categories
     },
     getHostName(state) {
@@ -80,6 +73,7 @@ export default new Vuex.Store({
   },
   modules: {
     auth: Auth,
-    product: Product
+    product: Product,
+    addProduct: AddByCategory
   }
 })

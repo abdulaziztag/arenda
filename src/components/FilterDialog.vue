@@ -9,6 +9,7 @@
       <v-card>
         <v-toolbar
             dark
+            dense
             color="amber darken-1"
         >
           <v-btn

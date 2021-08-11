@@ -8,7 +8,7 @@
     >
       <v-row>
         <v-col class="text-h4 text-center font-weight-light">
-          Arenduy
+          Arend<span style="color: #D500F9">Uy</span>
         </v-col>
       </v-row>
     </v-toolbar>

@@ -51,13 +51,13 @@ export default {
     color() {
       let path = this.$route.path
       if (path === '/categories') {
-        return 'red lighten-1'
+        return 'blue lighten-3'
       } else if (path === '/search') {
-        return 'amber darken-1'
+        return 'blue lighten-3'
       } else if (path === '/my-posts') {
-        return 'indigo'
+        return 'blue lighten-3'
       } else {
-        return 'purple darken-2'
+        return 'blue lighten-3'
       }
     }
   },

@@ -29,7 +29,7 @@
         </v-col>
         <v-col cols="12">
           <v-list>
-            <v-list-item @click="getProducts" v-for="sub in subCategory">
+            <v-list-item @click="getProducts(sub.slug)" v-for="sub in subCategory" :key="sub.slug">
               {{sub.name}}
             </v-list-item>
           </v-list>
@@ -48,8 +48,12 @@
 export default {
   name: "subCategories",
   methods: {
-    getProducts() {
-      console.log('ds')
+    async getProducts(subSlug) {
+      await this.$store.dispatch('getProductListInCategories', {
+        categorySlug: this.$route.params.categorySlug,
+        subSlug
+      })
+      await this.$router.push(`/category/${this.$route.params.categorySlug}/${subSlug}`)
     }
   },
   computed: {

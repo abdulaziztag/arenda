@@ -8,6 +8,8 @@ import MyPosts from '../views/Menu/MyPosts'
 import ProductMain from '../views/Product/ProductMain';
 import Search from '../views/Menu/Search';
 import SubCategories from '../views/Menu/SubCategories';
+import ProductList from '../views/Menu/ProductList';
+import AddProduct from '../views/Product/AddProduct';
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,16 @@ const routes = [
     component: SubCategories
   },
   {
+    path: '/category/:categorySlug/:subCategorySlug',
+    name: 'ProductList',
+    component: ProductList
+  },
+  {
+    path: '/addPost',
+    name: 'AddPost',
+    component: AddProduct
+  },
+  {
     path: '/search',
     name: 'Search',
     component: Search
@@ -38,7 +50,7 @@ const routes = [
     component: MyPosts
   },
   {
-    path: '/product/:product',
+    path: '/product/:categorySlug/:subSlug/:productSlug',
     name: 'ProductMain',
     component: ProductMain
   },
